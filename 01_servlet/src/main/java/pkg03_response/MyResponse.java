@@ -37,8 +37,6 @@ public class MyResponse extends HttpServlet {
     out.flush();
     out.close();
 	  
-	  
-	  
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
