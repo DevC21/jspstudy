@@ -18,6 +18,26 @@
   .row > span:nth-of-type(3) {
     width: 100px;
   }
+
+  .paging {
+    display: flex;
+  }
+  .paging > div {
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+  }
+  .paging a {
+    color: black;
+    text-decoration: none;
+  }
+  .dont-click {
+    color: silver;
+  }
+  .current-page {
+    color: limegreen!important;
+  }
 </style>
 </head>
 <body>
@@ -30,8 +50,30 @@
   
   <div>
     <span>게시글 개수</span>
-    <span>${boardCount}</span>
+    <span>${total}</span>
   </div>
+  
+  <div>
+    <a href="${contextPath}/board/list.brd?page=1&sort=DESC&display=${display}">내림차순</a>
+    <span>|</span>
+    <a href="${contextPath}/board/list.brd?page=1&sort=ASC&display=${display}">오름차순</a>
+  </div>
+  
+  <div>
+    <select id="display">
+      <option>20</option>
+      <option>50</option>
+      <option>100</option>
+    </select>
+  </div>
+  <script>
+    document.getElementById('display').value = ${display};
+    document.getElementById('display').addEventListener('change', (evt)=>{
+      location.href = '${contextPath}/board/list.brd?&sort=${sort}&display=' + evt.target.value;
+    })
+  </script>
+  
+  <div class="paging">${paging}</div>
   
   <div>
     <c:if test="${empty boardList}">
